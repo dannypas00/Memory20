@@ -31,6 +31,7 @@ namespace Memory_Game
             {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
+            CreateImage();
         }
 
         private void AddLabel()
@@ -42,6 +43,19 @@ namespace Memory_Game
 
             Grid.SetColumn(title, 0);
             grid.Children.Add(title);
+        }
+        private Image CreateImage()
+        {
+            var img = CreateImage();
+            Grid.SetRow(img, 0);
+            Grid.SetColumn(img, 0);
+            grid_Main.Children.Add(img);
+            Image Mole = new Image();
+            Mole.Width = 25;
+            Mole.Height = 25;
+            ImageSource MoleImage = new cb.jpg(new Uri(CheckBox.jpg));
+            Mole.Source = MoleImage;
+            return Mole;
         }
     }
 }
