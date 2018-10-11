@@ -36,7 +36,7 @@ namespace Memory_Game
         private void AddLabel()
         {
             Label title = new Label();
-            title.Content = "Memory";
+            title.Content = "Memory Game";
             title.FontSize = 20;
             title.HorizontalAlignment = HorizontalAlignment.Center;
 

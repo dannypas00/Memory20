@@ -33,8 +33,9 @@ namespace Memory_Game
         //Clearing screen
         public void Clear()
         {
-            GameGrid.RowDefinitions.RemoveRange(0, NR_OF_ROWS);
-            GameGrid.ColumnDefinitions.RemoveRange(0, NR_OF_COLS);
+            GameGrid.Children.Clear();
+            GameGrid.RowDefinitions.Clear();
+            GameGrid.ColumnDefinitions.Clear();
         }
         
         private void OpenGame()
