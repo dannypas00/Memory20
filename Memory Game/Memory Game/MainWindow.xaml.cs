@@ -27,15 +27,28 @@ namespace Memory_Game
         public MainWindow()
         {
             InitializeComponent();
-            grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
-
+            //OpenGame();
         }
-
-        private void InitializeGameGrid()
+        
+        //Clearing screen
+        public void Clear()
         {
-            
+            GameGrid.RowDefinitions.RemoveRange(0, NR_OF_ROWS);
+            GameGrid.ColumnDefinitions.RemoveRange(0, NR_OF_COLS);
         }
         
-        
+        private void OpenGame()
+        {
+            grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
+        }
+
+        private void ClearGrid(object sender, RoutedEventArgs e)
+        {
+            Clear();
+        }
+        private void CreateGrid(object sender, RoutedEventArgs e)
+        {
+            OpenGame();
+        }
     }
 }

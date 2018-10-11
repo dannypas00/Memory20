@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Memory_Game"
         mc:Ignorable="d"
         Title="MainWindow" Height="1024" Width="1024">
-    <Grid x:Name="GameGrid">
-    
-    </Grid>
+    <StackPanel>
+        <CheckBox x:Name="EnableGrid" Unchecked="ClearGrid" Checked="CreateGrid">Have Grid?</CheckBox>
+        <Grid x:Name="GameGrid"/>
+    </StackPanel>
 </Window>
