@@ -20,14 +20,14 @@ namespace Memory_Game
     /// </summary>
     public partial class MainWindow : Window
     {
-        MemoryGrid grid;
+        Grid gameGrid;
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
 
         public MainWindow()
         {
             InitializeComponent();
-            grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
+            //grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
             //OpenGame();
         }
         
@@ -58,7 +58,10 @@ namespace Memory_Game
             Grid gameGrid = new Grid();
             gameGrid.Name = "GameGrid";
             Main.Children.Add(gameGrid);
-            grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
+            gameGrid.ShowGridLines = true;
+            //grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
+            InitializeGameGrid(4, 4);
+            gameGrid.Background = Brushes.Aqua;
         }
 
 
@@ -74,6 +77,20 @@ namespace Memory_Game
         {
             Clear();
             
+        }
+
+
+        private void InitializeGameGrid(int cols, int rows)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                gameGrid.RowDefinitions.Add(new RowDefinition());
+            }
+
+            for (int i = 0; i < cols; i++)
+            {
+                gameGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
         }
     }
 }
