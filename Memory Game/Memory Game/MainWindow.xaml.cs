@@ -20,36 +20,58 @@ namespace Memory_Game
     /// </summary>
     public partial class MainWindow : Window
     {
+        MemoryGrid grid;
+        StackPanel panel;
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
-        MemoryGrid grid;
 
         public MainWindow()
         {
+            panel = Main;
             InitializeComponent();
             //OpenGame();
         }
         
         //Clearing screen
-        public void Clear()
+        /*public void Clear()
         {
             GameGrid.Children.Clear();
             GameGrid.RowDefinitions.Clear();
             GameGrid.ColumnDefinitions.Clear();
+        }*/
+
+        //Clear the screen
+        public void Clear()
+        {
+            Main.Children.Clear();
         }
-        
-        private void OpenGame()
+
+
+        //Click on the play button
+        private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Clear();
+            OpenGame();
+        }
+
+        public void OpenGame()
         {
             grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
         }
 
-        private void ClearGrid(object sender, RoutedEventArgs e)
+
+        //Click on the Highscore Button
+        private void HighscoreBtn_Click(object sender, RoutedEventArgs e)
         {
             Clear();
+            OpenHighscore();
         }
-        private void CreateGrid(object sender, RoutedEventArgs e)
+
+        //Open the highscore page
+        public void OpenHighscore()
         {
-            OpenGame();
+            Clear();
+            
         }
     }
 }
