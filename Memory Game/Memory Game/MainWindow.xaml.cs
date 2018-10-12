@@ -21,14 +21,13 @@ namespace Memory_Game
     public partial class MainWindow : Window
     {
         MemoryGrid grid;
-        StackPanel panel;
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
 
         public MainWindow()
         {
-            panel = Main;
             InitializeComponent();
+            grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
             //OpenGame();
         }
         
@@ -56,6 +55,9 @@ namespace Memory_Game
 
         public void OpenGame()
         {
+            Grid gameGrid = new Grid();
+            gameGrid.Name = "GameGrid";
+            Main.Children.Add(gameGrid);
             grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
         }
 

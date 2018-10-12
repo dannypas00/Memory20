@@ -10,7 +10,7 @@
         <!--
         <CheckBox x:Name="EnableGrid" Unchecked="ClearGrid" Checked="CreateGrid">Have Grid?</CheckBox>
         -->
-        <Grid x:Name="GameGrid"/>
+        <Grid x:Name="GameGrid" Background="Aqua"/>
         <Label Content="Memory game"
                FontFamily="Comic Sans MS"
                FontSize="40"

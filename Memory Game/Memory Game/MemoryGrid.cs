@@ -16,6 +16,7 @@ namespace Memory_Game
         public MemoryGrid(Grid grid, int cols, int rows)
         {
             this.grid = grid;
+            grid.Background = Brushes.Aqua;
             InitializeGameGrid(cols, rows);
             AddLabel();
         }
