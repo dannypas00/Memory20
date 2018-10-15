@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Memory_Game
 {
@@ -15,9 +16,10 @@ namespace Memory_Game
 
         public MemoryGrid(Grid grid, int cols, int rows)
         {
+
             this.grid = grid;
             InitializeGameGrid(cols, rows);
-            AddLabel();
+            CreateImage(cols, rows);
         }
 
         private void InitializeGameGrid(int cols, int rows)
@@ -31,7 +33,6 @@ namespace Memory_Game
             {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
-            CreateImage();
         }
 
         private void AddLabel()
@@ -40,22 +41,23 @@ namespace Memory_Game
             title.Content = "Memory";
             title.FontSize = 20;
             title.HorizontalAlignment = HorizontalAlignment.Center;
-
             Grid.SetColumn(title, 0);
             grid.Children.Add(title);
         }
-        private Image CreateImage()
+        private void CreateImage(int cols, int rows)
         {
-            var img = CreateImage();
-            Grid.SetRow(img, 0);
-            Grid.SetColumn(img, 0);
-            grid_Main.Children.Add(img);
-            Image Mole = new Image();
-            Mole.Width = 25;
-            Mole.Height = 25;
-            ImageSource MoleImage = new cb.jpg(new Uri(CheckBox.jpg));
-            Mole.Source = MoleImage;
-            return Mole;
+            for (int row = 0; row < rows; row++)
+            {
+                for (int column = 0; column < cols; column++)
+                {
+                    Image backgroundImage = new Image();
+                    backgroundImage.Source = new BitmapImage(new Uri("cb.jpg", UriKind.Relative));
+                    Grid.SetColumn(backgroundImage, column);
+                    Grid.SetRow(backgroundImage, row);
+                    grid.Children.Add(backgroundImage);
+                }
+            }
+            
         }
     }
 }
