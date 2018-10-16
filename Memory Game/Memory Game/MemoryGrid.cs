@@ -14,8 +14,6 @@ namespace Memory_Game
     public class MemoryGrid
     {
         private Grid grid;
-        int column;
-        int row;
 
         public MemoryGrid(Grid grid, int cols, int rows)
         {
@@ -49,30 +47,70 @@ namespace Memory_Game
         }
         private void CreateImage(int cols, int rows)
         {
+
             for (int row = 0; row < rows; row++)
             {
                 for (int column = 0; column < cols; column++)
                 {
-                    Console.WriteLine(column + row);
+
                     Image backgroundImage = new Image();
                     backgroundImage.Source = new BitmapImage(new Uri("cb.jpg", UriKind.Relative));
-                    backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick);
+                    backgroundImage.MouseDown += new MouseButtonEventHandler(OnPreviewMouseLeftButtonDown);
+                    //backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick(row, column));
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
                     grid.Children.Add(backgroundImage);
-                    column = this.column;
-                    row = this.row;
+                    
+
                 }
             }
-            
+
         }
-        private void CardClick(object sender, MouseButtonEventArgs e)
+        //private void CardClick(object sender, MouseButtonEventArgs e, int row, int column)
+        //{
+        //    Image AngryBird = new Image();
+        //    AngryBird.Source = new BitmapImage(new Uri("ab1.png", UriKind.Relative));
+        //    Grid.SetColumn(AngryBird, column);
+        //    Grid.SetRow(AngryBird, row);
+        //    grid.Children.Add(AngryBird);
+        //}
+
+        private void OnPreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+           
+
+            var point = Mouse.GetPosition(grid);
+
+            int row = 0;
+            int column = 0;
+            double accumulatedHeight = 0.0;
+            double accumulatedWidth = 0.0;
+
+            // calc row mouse was over
+            foreach (var rowDefinition in grid.RowDefinitions)
+            {
+                accumulatedHeight += rowDefinition.ActualHeight;
+                if (accumulatedHeight >= point.Y)
+                    break;
+                row++;
+            }
+
+            // calc col mouse was over
+            foreach (var columnDefinition in grid.ColumnDefinitions)
+            {
+                accumulatedWidth += columnDefinition.ActualWidth;
+                if (accumulatedWidth >= point.X)
+                    break;
+                column++;
+            }
             Image AngryBird = new Image();
-            AngryBird.Source = new BitmapImage(new Uri("ab1.png", UriKind.Relative));
+            AngryBird.Source = new BitmapImage(new Uri("ab6.png", UriKind.Relative));
             Grid.SetColumn(AngryBird, column);
             Grid.SetRow(AngryBird, row);
             grid.Children.Add(AngryBird);
+
+
+
         }
     }
 }
