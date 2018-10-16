@@ -76,8 +76,8 @@ namespace Memory_Game
         //Open the highscore page
         public void OpenHighscore()
         {
+
             Clear();
-            
         }
 
 
