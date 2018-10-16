@@ -15,55 +15,42 @@ namespace Memory_Game
     public class MemoryGrid
     {
         int ImageNumber;
-        BitmapImage[] ImageKind = new BitmapImage[16];
-        
 
-        //BitmapImage[] RandomImageKind = new BitmapImage[16];
+        //Make empty array For the Images
+        BitmapImage[] ImageKind = new BitmapImage[16];
+
+        //List to match grindpoints to a specific spot in the code
         List<string> Gridpoints = new List<string>
         {
             "00","01","02","03","10","11","12","13","20","21","22","23","30","31","32","33"
         };
-        //string[] GridPoints = new string[16] {
-        //     "00",
-        //     "01",
-        //     "02",
-        //     "03",
-        //     "10",
-        //     "11",
-        //     "12",
-        //     "13",
-        //     "20",
-        //     "21",
-        //     "23",
-        //     "24",
-        //     "30",
-        //     "31",
-        //     "32",
-        //     "33"
-        //};
+
         private Grid grid;
 
         public MemoryGrid(Grid grid, int cols, int rows)
         {
+            //Make a list of double images in the array
             for (int i = 0; i < 8; i++)
             {
                 ImageKind[i] = new BitmapImage(new Uri("ab" + (i + 1) + ".png", UriKind.Relative));
                 ImageKind[i + 8] = new BitmapImage(new Uri("ab" + (i + 1) + ".png", UriKind.Relative));
             }
+
+            //Randomize these images in the array
             Random rnd = new Random();
             ImageKind = ImageKind.OrderBy(x => rnd.Next()).ToArray();
 
-
-            //Random rnd = new Random();
-            //BitmapImage[] RandomImageKind = ImageKind.OrderBy(x => rnd.Next()).ToArray();
-
             this.grid = grid;
+            
+            //Write an empty grid
             InitializeGameGrid(cols, rows);
+            
+            //Write images into the grids
             CreateImage(cols, rows);
 
         }
 
-
+        //Create Empty grid 4x4
         private void InitializeGameGrid(int cols, int rows)
         {
             for (int i = 0; i < rows; i++)
@@ -77,15 +64,7 @@ namespace Memory_Game
             }
         }
 
-        private void AddLabel()
-        {
-            Label title = new Label();
-            title.Content = "Memory";
-            title.FontSize = 20;
-            title.HorizontalAlignment = HorizontalAlignment.Center;
-            Grid.SetColumn(title, 0);
-            grid.Children.Add(title);
-        }
+        //Create background images in the grids
         private void CreateImage(int cols, int rows)
         {
 
@@ -96,8 +75,11 @@ namespace Memory_Game
 
                     Image backgroundImage = new Image();
                     backgroundImage.Source = new BitmapImage(new Uri("cb.jpg", UriKind.Relative));
+
+                    // Add on click function
                     backgroundImage.MouseDown += new MouseButtonEventHandler(OnPreviewMouseLeftButtonDown);
-                    //backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick(row, column));
+
+                    // Write Background images on the grid
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
                     grid.Children.Add(backgroundImage);
@@ -107,14 +89,6 @@ namespace Memory_Game
             }
 
         }
-        //private void CardClick(object sender, MouseButtonEventArgs e, int row, int column)
-        //{
-        //    Image AngryBird = new Image();
-        //    AngryBird.Source = new BitmapImage(new Uri("ab1.png", UriKind.Relative));
-        //    Grid.SetColumn(AngryBird, column);
-        //    Grid.SetRow(AngryBird, row);
-        //    grid.Children.Add(AngryBird);
-        //}
 
         private void OnPreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -144,11 +118,14 @@ namespace Memory_Game
                 column++;
             }
 
+            
             Image AngryBird = new Image();
 
+                // Make the grid point into a string so you can reconize it in the list (Gridpoints)
                 string abc = Convert.ToString(row) + Convert.ToString(column);
                 Console.WriteLine(abc);
 
+                // Match string abc to List (Gridpoints
                 for (int i=0;i < Gridpoints.Count; i++)
                 {
                 if(Gridpoints[i].Contains(abc))
@@ -159,12 +136,12 @@ namespace Memory_Game
                 }
                 }
                 
-
+                // Write the Randomized image on the spot you click
                 AngryBird.Source = ImageKind[ImageNumber];
                 Grid.SetColumn(AngryBird, column);
                 Grid.SetRow(AngryBird, row);
                 grid.Children.Add(AngryBird);
-                //ImageNumber++;
+
                 
 
                 
