@@ -7,12 +7,15 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Input;
 
 namespace Memory_Game
 {
     public class MemoryGrid
     {
         private Grid grid;
+        int column;
+        int row;
 
         public MemoryGrid(Grid grid, int cols, int rows)
         {
@@ -50,14 +53,26 @@ namespace Memory_Game
             {
                 for (int column = 0; column < cols; column++)
                 {
+                    Console.WriteLine(column + row);
                     Image backgroundImage = new Image();
                     backgroundImage.Source = new BitmapImage(new Uri("cb.jpg", UriKind.Relative));
+                    backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick);
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
                     grid.Children.Add(backgroundImage);
+                    column = this.column;
+                    row = this.row;
                 }
             }
             
+        }
+        private void CardClick(object sender, MouseButtonEventArgs e)
+        {
+            Image AngryBird = new Image();
+            AngryBird.Source = new BitmapImage(new Uri("ab1.png", UriKind.Relative));
+            Grid.SetColumn(AngryBird, column);
+            Grid.SetRow(AngryBird, row);
+            grid.Children.Add(AngryBird);
         }
     }
 }

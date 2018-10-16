@@ -8,6 +8,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("cb.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab2.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab3.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab4.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab5.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab6.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab7.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ab8.png")]
 
 
