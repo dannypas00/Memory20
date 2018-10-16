@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,21 +26,24 @@ namespace Memory_Game
         private MemoryGrid grid;
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
+        private string userName = "Bob";
+        private int score;
+        private string[,] highscores = new string[10, 2]
+          { { "Bob", "20" },
+            { "Ben", "18" },
+            { "Jeremy", "15" },
+            { "Jake", "14" },
+            { "Logan", "12" },
+            { "Mark", "10" },
+            { "Dan", "8" },
+            { "Harm", "5" },
+            { "Jenny", "3" },
+            { "Arthur", "1" } }; 
 
         public MainWindow()
         {
-            InitializeComponent();
-            //grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
-            //OpenGame();
+            //Lol, main loop is empty
         }
-        
-        //Clearing screen
-        /*public void Clear()
-        {
-            GameGrid.Children.Clear();
-            GameGrid.RowDefinitions.Clear();
-            GameGrid.ColumnDefinitions.Clear();
-        }*/
 
         //Clear the screen
         public void Clear()
@@ -81,17 +86,19 @@ namespace Memory_Game
         }
 
 
-        //private void InitializeGameGrid(int cols, int rows)
-        //{
-        //    for (int i = 0; i < rows; i++)
-        //    {
-        //        gameGrid.RowDefinitions.Add(new RowDefinition());
-        //    }
+        //Click on the Save File button
+        private void SaveFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string[] highscoreString = new string[10];
+            //Convert from 2d to 1d array
+            for (int i = 0; i < 10; i++)
+            {
+                highscoreString[i] = highscores[i, 0] + " - " + highscores[i, 1];
+            }
+            string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\")) + "Highscores.txt";
+            //G:\My Drive\HBO-ICT\Memory20\Memory Game\Highscores.txt
 
-        //    for (int i = 0; i < cols; i++)
-        //    {
-        //        gameGrid.ColumnDefinitions.Add(new ColumnDefinition());
-        //    }
-        //}
+            File.WriteAllLines(path, highscoreString);
+        }
     }
 }

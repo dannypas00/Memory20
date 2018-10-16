@@ -27,6 +27,11 @@
                 Height="50"
                 Margin="0, 30, 0, 30"
                 />
+        <Button x:Name="savefileBtn" Content="Create save file" Click="SaveFileBtn_Click"
+                Width="720"
+                Height="50"
+                Margin="0, 30, 0, 30"
+                />
         <Grid x:Name="GameGrid" Background="Aqua"/>
     </StackPanel>
 </Window>
