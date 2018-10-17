@@ -75,7 +75,7 @@ namespace Memory_Game
                 {
 
                     Image backgroundImage = new Image();
-                    backgroundImage.Source = new BitmapImage(new Uri("cb.jpg", UriKind.Relative));
+                    backgroundImage.Source = new BitmapImage(new Uri("cb.png", UriKind.Relative));
 
                     // Add on click function
                     backgroundImage.MouseDown += new MouseButtonEventHandler(OnPreviewMouseLeftButtonDown);

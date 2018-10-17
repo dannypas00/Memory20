@@ -22,6 +22,8 @@ namespace Memory_Game
     {
         //private Grid gameGrid;
         private MemoryGrid grid;
+        private Highscore highscoregrid;
+        
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
 
@@ -76,7 +78,14 @@ namespace Memory_Game
         //Open the highscore page
         public void OpenHighscore()
         {
-            Clear();
+            Grid Highscore = new Grid();
+            Highscore.Name = "Highscore";
+            Main.Children.Add(Highscore);
+            Highscore.ShowGridLines = true;
+            highscoregrid = new Highscore(Main);
+            //InitializeGameGrid(4, 4);
+            Highscore.Background = Brushes.Aqua;
+
 
         }
 

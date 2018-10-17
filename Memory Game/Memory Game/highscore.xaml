@@ -1,0 +1,23 @@
+﻿<Window x:Class="Memory_Game.Properties.highscore"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Memory_Game.Properties"
+        mc:Ignorable="d"
+        Title="Highscores" Height="823" Width="800">
+    <StackPanel x:Name="Highscore">
+        <Label Content="Highscores"
+               FontFamily="Comic Sans MS"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               />
+        <Button x:Name="BackBtn" Content="Go back" Click="BackBtn_Click"
+                FontSize="15"
+                Width="720"
+                Height="50"
+                Margin="36.8,640,44.6,30"
+                           
+                />
+    </StackPanel>
+</Window>
