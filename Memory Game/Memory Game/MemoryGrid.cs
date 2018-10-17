@@ -14,11 +14,13 @@ namespace Memory_Game
 {
     public class MemoryGrid
     {
+        int turn = 0;
         int ImageNumber;
+        int Tempmem = 0;
         string thema = "ab";
 
         //Make empty array For the Images
-        BitmapImage[] ImageKind = new BitmapImage[16];
+        int[] ImageKind = new int[16];
 
         //List to match grindpoints to a specific spot in the code
         List<string> Gridpoints = new List<string>
@@ -33,8 +35,8 @@ namespace Memory_Game
             //Make a list of double images in the array
             for (int i = 0; i < 8; i++)
             {
-                ImageKind[i] = new BitmapImage(new Uri(thema + (i + 1) + ".png", UriKind.Relative));
-                ImageKind[i + 8] = new BitmapImage(new Uri(thema + (i + 1) + ".png", UriKind.Relative));
+                ImageKind[i] = i;
+                ImageKind[i + 8] = i;
             }
 
             //Randomize these images in the array
@@ -75,6 +77,7 @@ namespace Memory_Game
                 {
 
                     Image backgroundImage = new Image();
+                    backgroundImage.Name = "cb" + Convert.ToString(row) + Convert.ToString(column);
                     backgroundImage.Source = new BitmapImage(new Uri("cb.jpg", UriKind.Relative));
 
                     // Add on click function
@@ -93,14 +96,16 @@ namespace Memory_Game
 
         private void OnPreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-           
+
 
             var point = Mouse.GetPosition(grid);
             int row = 0;
             int column = 0;
+
             double accumulatedHeight = 0.0;
             double accumulatedWidth = 0.0;
-            
+
+
             // calc row mouse was over
             foreach (var rowDefinition in grid.RowDefinitions)
             {
@@ -119,34 +124,51 @@ namespace Memory_Game
                 column++;
             }
 
-            
+
+
             Image AngryBird = new Image();
 
-                // Make the grid point into a string so you can reconize it in the list (Gridpoints)
-                string abc = Convert.ToString(row) + Convert.ToString(column);
-                Console.WriteLine(abc);
+            // Make the grid point into a string so you can reconize it in the list (Gridpoints)
+            string abc = Convert.ToString(row) + Convert.ToString(column);
+            turn++;
 
-                // Match string abc to List (Gridpoints
-                for (int i=0;i < Gridpoints.Count; i++)
-                {
-                if(Gridpoints[i].Contains(abc))
+
+
+            // Match string abc to List (Gridpoints
+            for (int i = 0; i < Gridpoints.Count; i++)
+            {
+                if (Gridpoints[i].Contains(abc))
                 {
                     ImageNumber = i;
-                    Console.WriteLine("i is: " + i);
-                    Console.WriteLine("ImageNumber is: " + ImageNumber);
                 }
-                }
-                
-                // Write the Randomized image on the spot you click
-                AngryBird.Source = ImageKind[ImageNumber];
+            }
+
+            // Write the Randomized image on the spot you click
+                AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+                AngryBird.Name = "ab" + Convert.ToString(ImageNumber);
                 Grid.SetColumn(AngryBird, column);
                 Grid.SetRow(AngryBird, row);
                 grid.Children.Add(AngryBird);
 
-                
+            if (turn > 1)
+            {
+                if (ImageKind[ImageNumber] + 1 == Tempmem )
+                {
+                    Console.WriteLine("PAIR!");
+                }
+                turn = 0;
 
-                
-            
+            }
+            Console.WriteLine(Tempmem);
+            Tempmem = ImageKind[ImageNumber] + 1;
+            Console.WriteLine(Tempmem);
+
+
+
+
+
+
+
 
 
         }
