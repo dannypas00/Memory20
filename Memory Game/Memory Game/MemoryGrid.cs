@@ -154,7 +154,12 @@ namespace Memory_Game
             {
                 if (ImageKind[ImageNumber] + 1 == Tempmem )
                 {
+                    //keep turned
                     Console.WriteLine("PAIR!");
+                }
+                else
+                {
+                    //turn cards back
                 }
                 turn = 0;
 
