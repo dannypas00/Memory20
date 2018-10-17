@@ -20,14 +20,78 @@ namespace Memory_Game
     /// </summary>
     public partial class MainWindow : Window
     {
+        //private Grid gameGrid;
+        private MemoryGrid grid;
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
-        MemoryGrid grid;
 
         public MainWindow()
         {
-            grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
+            InitializeComponent();
+            //grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
+            //OpenGame();
+        }
+
+        //Clearing screen
+        /*public void Clear()
+        {
+            GameGrid.Children.Clear();
+            GameGrid.RowDefinitions.Clear();
+            GameGrid.ColumnDefinitions.Clear();
+        }*/
+
+        //Clear the screen
+        public void Clear()
+        {
+            Main.Children.Clear();
+        }
+
+
+        //Click on the play button
+        private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Clear();
+            OpenGame();
+        }
+
+        public void OpenGame()
+        {
+            Grid gameGrid = new Grid();
+            gameGrid.Name = "GameGrid";
+            Main.Children.Add(gameGrid);
+            gameGrid.ShowGridLines = true;
+            grid = new MemoryGrid(gameGrid, NR_OF_COLS, NR_OF_ROWS);
+            //InitializeGameGrid(4, 4);
+            gameGrid.Background = Brushes.Aqua;
+        }
+
+
+        //Click on the Highscore Button
+        private void HighscoreBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Clear();
+            OpenHighscore();
+        }
+
+        //Open the highscore page
+        public void OpenHighscore()
+        {
+            Clear();
 
         }
+
+
+        //private void InitializeGameGrid(int cols, int rows)
+        //{
+        //    for (int i = 0; i < rows; i++)
+        //    {
+        //        gameGrid.RowDefinitions.Add(new RowDefinition());
+        //    }
+
+        //    for (int i = 0; i < cols; i++)
+        //    {
+        //        gameGrid.ColumnDefinitions.Add(new ColumnDefinition());
+        //    }
+        //}
     }
 }

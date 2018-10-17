@@ -6,7 +6,27 @@
         xmlns:local="clr-namespace:Memory_Game"
         mc:Ignorable="d"
         Title="MainWindow" Height="1024" Width="1024">
-    <Grid x:Name="GameGrid">
-    
-    </Grid>
+    <StackPanel x:Name="Main">
+        <!--
+        <CheckBox x:Name="EnableGrid" Unchecked="ClearGrid" Checked="CreateGrid">Have Grid?</CheckBox> 
+        <Grid x:Name="GameGrid" Background="Aqua"/>
+        -->
+        <Label Content="Memory game"
+               FontFamily="Comic Sans MS"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               />
+        <Button x:Name="playBtn" Content="Play" Click="PlayBtn_Click"
+                Width="720"
+                Height="50"
+                Margin="0, 70, 0, 30"
+                
+                />
+        <Button x:Name="highscoreBtn" Content="HighScore" Click="HighscoreBtn_Click"
+                Width="720"
+                Height="50"
+                Margin="0, 30, 0, 30"
+                />
+        <Grid x:Name="GameGrid" Background="Aqua"/>
+    </StackPanel>
 </Window>
