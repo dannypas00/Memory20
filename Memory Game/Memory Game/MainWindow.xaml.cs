@@ -26,16 +26,8 @@ namespace Memory_Game
 
         public MainWindow()
         {
-            InitializeComponent();
             grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
 
         }
-
-        private void InitializeGameGrid()
-        {
-            
-        }
-        
-        
     }
 }

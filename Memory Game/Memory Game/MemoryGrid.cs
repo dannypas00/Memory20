@@ -15,6 +15,7 @@ namespace Memory_Game
     public class MemoryGrid
     {
         int ImageNumber;
+        string thema = "ab";
 
         //Make empty array For the Images
         BitmapImage[] ImageKind = new BitmapImage[16];
@@ -32,8 +33,8 @@ namespace Memory_Game
             //Make a list of double images in the array
             for (int i = 0; i < 8; i++)
             {
-                ImageKind[i] = new BitmapImage(new Uri("ab" + (i + 1) + ".png", UriKind.Relative));
-                ImageKind[i + 8] = new BitmapImage(new Uri("ab" + (i + 1) + ".png", UriKind.Relative));
+                ImageKind[i] = new BitmapImage(new Uri(thema + (i + 1) + ".png", UriKind.Relative));
+                ImageKind[i + 8] = new BitmapImage(new Uri(thema + (i + 1) + ".png", UriKind.Relative));
             }
 
             //Randomize these images in the array
@@ -50,7 +51,7 @@ namespace Memory_Game
 
         }
 
-        //Create Empty grid 4x4
+        //Create Empty grid cols x rows
         private void InitializeGameGrid(int cols, int rows)
         {
             for (int i = 0; i < rows; i++)
