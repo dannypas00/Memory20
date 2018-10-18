@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Memory_Game
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public string player1;
@@ -26,20 +23,6 @@ namespace Memory_Game
         private MemoryGrid grid;
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
-
-        public MainWindow()
-        {
-            //grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
-            //OpenGame();
-        }
-
-        //Clearing screen
-        /*public void Clear()
-        {
-            GameGrid.Children.Clear();
-            GameGrid.RowDefinitions.Clear();
-            GameGrid.ColumnDefinitions.Clear();
-        }*/
 
         //Clear the screen
         public void Clear()
@@ -68,7 +51,6 @@ namespace Memory_Game
             Grid gameGrid = new Grid();
             gameGrid.Name = "GameGrid";
             Main.Children.Add(gameGrid);
-            gameGrid.ShowGridLines = true;
 
             Label playerScores = new Label();
             playerScores.Name = "playerScores";
@@ -78,7 +60,6 @@ namespace Memory_Game
             string player1 = Convert.ToString(Player1Name.Text);
             string player2 = Convert.ToString(Player2Name.Text);
             grid = new MemoryGrid(gameGrid, NR_OF_COLS, NR_OF_ROWS, playerScores, player1, player2, Main);
-            //InitializeGameGrid(4, 4);
             gameGrid.Background = Brushes.Aqua;
         }
 
@@ -94,21 +75,6 @@ namespace Memory_Game
         public void OpenHighscore()
         {
             Clear();
-
         }
-
-
-        //private void InitializeGameGrid(int cols, int rows)
-        //{
-        //    for (int i = 0; i < rows; i++)
-        //    {
-        //        gameGrid.RowDefinitions.Add(new RowDefinition());
-        //    }
-
-        //    for (int i = 0; i < cols; i++)
-        //    {
-        //        gameGrid.ColumnDefinitions.Add(new ColumnDefinition());
-        //    }
-        //}
     }
 }

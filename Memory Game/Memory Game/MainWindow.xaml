@@ -45,12 +45,5 @@
                 Margin="0, 30, 0, 30"
                 />
         <Grid x:Name="GameGrid" Background="Aqua"/>
-        <!--<Popup x:Name="PlayerNameInput"
-               Width="300px"
-               Height="200px"
-               IsOpen="True"
-               >-->
-            
-        <!--</Popup>-->
     </StackPanel>
 </Window>
