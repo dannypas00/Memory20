@@ -81,7 +81,7 @@ namespace Memory_Game
 
                     Image backgroundImage = new Image();
                     backgroundImage.Name = "cb" + Convert.ToString(row) + Convert.ToString(column);
-                    backgroundImage.Source = new BitmapImage(new Uri("cb.jpg", UriKind.Relative));
+                    backgroundImage.Source = new BitmapImage(new Uri("abbg.png", UriKind.Relative));
 
                     // Add on click function
                     backgroundImage.MouseDown += new MouseButtonEventHandler(OnPreviewMouseLeftButtonDown);

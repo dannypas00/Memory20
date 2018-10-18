@@ -59,7 +59,7 @@ namespace Memory_Game
             Grid gameGrid = new Grid();
             gameGrid.Name = "GameGrid";
             Main.Children.Add(gameGrid);
-            gameGrid.ShowGridLines = true;
+            //gameGrid.ShowGridLines = true;
             grid = new MemoryGrid(gameGrid, NR_OF_COLS, NR_OF_ROWS);
             //InitializeGameGrid(4, 4);
             gameGrid.Background = Brushes.Aqua;
