@@ -14,14 +14,15 @@ namespace Memory_Game
 {
     public class MemoryGrid
     {
-        int turn = 0;
-        int ImageNumber;
+        int turn, Temprow, Tempcolumn = 0;
+        int ImageNumber,ImageNumbermem, cols, rows;
         int Tempmem = 0;
         string thema = "ab";
+        string name;
 
         //Make empty array For the Images
         int[] ImageKind = new int[16];
-
+        bool[] Gridmem = new bool[16];
         //List to match grindpoints to a specific spot in the code
         List<string> Gridpoints = new List<string>
         {
@@ -37,6 +38,7 @@ namespace Memory_Game
             {
                 ImageKind[i] = i;
                 ImageKind[i + 8] = i;
+                Gridmem[i] = false;
             }
 
             //Randomize these images in the array
@@ -44,7 +46,8 @@ namespace Memory_Game
             ImageKind = ImageKind.OrderBy(x => rnd.Next()).ToArray();
 
             this.grid = grid;
-            
+            this.cols = cols;
+            this.rows = rows;
             //Write an empty grid
             InitializeGameGrid(cols, rows);
             
@@ -87,7 +90,25 @@ namespace Memory_Game
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
                     grid.Children.Add(backgroundImage);
+                    for(int i =0; i < 16; i++)
+                    {
+                        if (Gridmem[i] == true)
+                        {
+                            string gridpos = Convert.ToString(row) + Convert.ToString(column);
+                            if (Gridpoints[i].Contains(gridpos))
+                            {
+                                ImageNumber = i;
+                                Image AngryBird = new Image();
+                                AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+                                AngryBird.Name = "ab" + Convert.ToString(ImageKind[ImageNumber]);
+                                Grid.SetColumn(AngryBird, column);
+                                Grid.SetRow(AngryBird, row);
+                                grid.Children.Add(AngryBird);
+                            }
+                            
+                        }
                     
+                    }
 
                 }
             }
@@ -144,11 +165,31 @@ namespace Memory_Game
             }
 
             // Write the Randomized image on the spot you click
-                AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
-                AngryBird.Name = "ab" + Convert.ToString(ImageNumber);
-                Grid.SetColumn(AngryBird, column);
-                Grid.SetRow(AngryBird, row);
-                grid.Children.Add(AngryBird);
+            AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+            AngryBird.Name = "ab" + Convert.ToString(ImageKind[ImageNumber]);
+            Grid.SetColumn(AngryBird, column);
+            Grid.SetRow(AngryBird, row);
+            grid.Children.Add(AngryBird);
+            Console.WriteLine(AngryBird.Name);
+            Gridmem[ImageNumber] = true;
+            Console.WriteLine(Convert.ToString(ImageKind[ImageNumber]));
+            Console.WriteLine(Convert.ToString(Gridmem[0]));
+            Console.WriteLine(Convert.ToString(Gridmem[1]));
+            Console.WriteLine(Convert.ToString(Gridmem[2]));
+            Console.WriteLine(Convert.ToString(Gridmem[3]));
+            Console.WriteLine(Convert.ToString(Gridmem[4]));
+            Console.WriteLine(Convert.ToString(Gridmem[5]));
+            Console.WriteLine(Convert.ToString(Gridmem[6]));
+            Console.WriteLine(Convert.ToString(Gridmem[7]));
+            Console.WriteLine(Convert.ToString(Gridmem[8]));
+            Console.WriteLine(Convert.ToString(Gridmem[9]));
+            Console.WriteLine(Convert.ToString(Gridmem[10]));
+            Console.WriteLine(Convert.ToString(Gridmem[11]));
+            Console.WriteLine(Convert.ToString(Gridmem[12]));
+            Console.WriteLine(Convert.ToString(Gridmem[13]));
+            Console.WriteLine(Convert.ToString(Gridmem[14]));
+            Console.WriteLine(Convert.ToString(Gridmem[15]));
+
 
             if (turn > 1)
             {
@@ -159,14 +200,21 @@ namespace Memory_Game
                 }
                 else
                 {
-                    //turn cards back
+                    Gridmem[ImageNumber] = false;
+                    Gridmem[ImageNumbermem] = false;
+                    grid.Children.Clear();
+                    CreateImage(cols, rows);
                 }
                 turn = 0;
 
             }
-            Console.WriteLine(Tempmem);
+            ImageNumbermem = ImageNumber;
             Tempmem = ImageKind[ImageNumber] + 1;
-            Console.WriteLine(Tempmem);
+            Temprow = row;
+            Tempcolumn = column;
+            name = AngryBird.Name;
+
+
 
 
 
