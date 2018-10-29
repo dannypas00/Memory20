@@ -22,7 +22,7 @@ namespace Memory_Game
     {
         //private Grid gameGrid;
         private MemoryGrid grid;
-        private Highscore highscoregrid;
+        private Highscore highscore;
         
         private const int NR_OF_COLS = 4;
         private const int NR_OF_ROWS = 4;
@@ -78,15 +78,27 @@ namespace Memory_Game
         //Open the highscore page
         public void OpenHighscore()
         {
-            Grid Highscore = new Grid();
-            Highscore.Name = "Highscore";
-            Main.Children.Add(Highscore);
-            Highscore.ShowGridLines = true;
-            highscoregrid = new Highscore(Main);
+            Label myLabel = new Label();
+            myLabel.Content = "HIGHSCORES";
+            myLabel.HorizontalAlignment = HorizontalAlignment.Center;
+            myLabel.VerticalAlignment = VerticalAlignment.Top;
+            myLabel.FontSize = 75;
+            Main.Children.Add(myLabel);
+
+            Grid Highscoregrid = new Grid();
+            Highscoregrid.Name = "Highscore";
+            Main.Children.Add(Highscoregrid);
+            Highscoregrid.ShowGridLines = true;
+            highscore = new Highscore(Main, Highscoregrid);
             //InitializeGameGrid(4, 4);
-            Highscore.Background = Brushes.Aqua;
+            //Highscoregrid.Background = Brushes.Aqua;
+        }
 
-
+        //Go back to the main page
+        private void GoBackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Clear();
+            
         }
 
 

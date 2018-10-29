@@ -2,12 +2,10 @@ D:\Git\Memory Game\Memory Game\bin\Debug\Memory Game.exe.config
 D:\Git\Memory Game\Memory Game\bin\Debug\Memory Game.exe
 D:\Git\Memory Game\Memory Game\bin\Debug\Memory Game.pdb
 D:\Git\Memory Game\Memory Game\obj\Debug\MainWindow.g.cs
-D:\Git\Memory Game\Memory Game\obj\Debug\highscore.g.cs
 D:\Git\Memory Game\Memory Game\obj\Debug\App.g.cs
 D:\Git\Memory Game\Memory Game\obj\Debug\Memory Game_MarkupCompile.cache
 D:\Git\Memory Game\Memory Game\obj\Debug\Memory Game_MarkupCompile.lref
 D:\Git\Memory Game\Memory Game\obj\Debug\MainWindow.baml
-D:\Git\Memory Game\Memory Game\obj\Debug\highscore.baml
 D:\Git\Memory Game\Memory Game\obj\Debug\Memory Game.g.resources
 D:\Git\Memory Game\Memory Game\obj\Debug\Memory_Game.Properties.Resources.resources
 D:\Git\Memory Game\Memory Game\obj\Debug\Memory Game.csproj.GenerateResource.cache
