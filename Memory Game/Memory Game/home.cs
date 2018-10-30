@@ -5,69 +5,57 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Memory_Game
 {
-    class Mainmenu
+    class home
     {
-        private StackPanel Main;
+        public string player1;
+        public string player2;
         private Highscore highscore;
         private Themakeuze themakeuze;
-        string playerName1;
-        string playerName2;
-        TextBox player1textbox;
-        TextBox player2textbox;
+        private StackPanel Main;
 
-
-        public Mainmenu(StackPanel Main, Grid MainMenugrid)
+        public home(StackPanel Main)
         {
             this.Main = Main;
 
-            //"Memory Game" Label
             Label WelcomeLabel = new Label();
             WelcomeLabel.Content = "Memory Game";
             WelcomeLabel.HorizontalAlignment = HorizontalAlignment.Center;
             WelcomeLabel.VerticalAlignment = VerticalAlignment.Top;
             WelcomeLabel.FontSize = 75;
 
-            Main.Children.Add(WelcomeLabel);
+            //Main.Children.Add(WelcomeLabel);
 
-            //"Player 1 Name" Label
+
             Label Player1Label = new Label();
-            Player1Label.Content = "Player1 Name";
+            Player1Label.Content = "Player1";
             Player1Label.HorizontalAlignment = HorizontalAlignment.Center;
             Player1Label.FontSize = 15;
             Main.Children.Add(Player1Label);
 
-            //Player 1 enter name textbox
+
             TextBox player1textbox = new TextBox();
             player1textbox.Width = 250;
-            player1textbox.Name = "playerName1";
             Main.Children.Add(player1textbox);
-            this.player1textbox = player1textbox;
 
-            //"Player 2 Name" Label
             Label Player2Label = new Label();
-            Player2Label.Content = "Player2 Name";
+            Player2Label.Content = "Player2";
             Player2Label.HorizontalAlignment = HorizontalAlignment.Center;
             Player2Label.FontSize = 15;
             Main.Children.Add(Player2Label);
 
-            //Player 2 enter name textbox
+
             TextBox player2textbox = new TextBox();
             player2textbox.Width = 250;
-            player2textbox.Name = "playerName2";
             Main.Children.Add(player2textbox);
-            this.player2textbox = player2textbox;
 
-            //Play Button
+
+            player1 = PlayerName("Player 1");
+            player2 = PlayerName("Player 2");
+
             Button PlayGameButton = new Button();
             PlayGameButton.Content = "Play";
             PlayGameButton.HorizontalAlignment = HorizontalAlignment.Center;
@@ -77,7 +65,6 @@ namespace Memory_Game
 
             Main.Children.Add(PlayGameButton);
 
-            //Highscore Button
             Button HighscoreButton = new Button();
             HighscoreButton.Content = "Highscores";
             HighscoreButton.HorizontalAlignment = HorizontalAlignment.Center;
@@ -86,6 +73,13 @@ namespace Memory_Game
             HighscoreButton.Click += HighscoreButton_Click;
 
             Main.Children.Add(HighscoreButton);
+
+        }
+
+        public string PlayerName(string player)
+        {
+
+            return "Test";
         }
 
         //Clear the screen
@@ -128,15 +122,37 @@ namespace Memory_Game
 
         public void OpenThemakeuze()
         {
-            playerName1 = Convert.ToString(player1textbox.Text);
-            playerName2 = Convert.ToString(player2textbox.Text);
             Grid Themakeuzegrid = new Grid();
             Themakeuzegrid.Name = "Themakeuze";
             Main.Children.Add(Themakeuzegrid);
             Themakeuzegrid.ShowGridLines = true;
-            themakeuze = new Themakeuze(Main, Themakeuzegrid, playerName1, playerName2);
+            themakeuze = new Themakeuze(Main, Themakeuzegrid);
             //InitializeGameGrid(4, 4);
             Themakeuzegrid.Background = Brushes.Aqua;
+        }
+    }
+
+    internal class Themakeuze
+    {
+        private StackPanel main;
+        private Grid themakeuzegrid;
+
+        public Themakeuze(StackPanel main, Grid themakeuzegrid)
+        {
+            this.main = main;
+            this.themakeuzegrid = themakeuzegrid;
+        }
+    }
+
+    internal class Highscore
+    {
+        private StackPanel main;
+        private Grid highscoregrid;
+
+        public Highscore(StackPanel main, Grid highscoregrid)
+        {
+            this.main = main;
+            this.highscoregrid = highscoregrid;
         }
     }
 }

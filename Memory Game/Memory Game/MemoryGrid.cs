@@ -14,7 +14,7 @@ namespace Memory_Game
 {
     public class MemoryGrid
     {
-        //Timer that ticks every 0.3 seconds
+        //Timer that ticks every mili second
         DispatcherTimer timer = new DispatcherTimer();
         //Timer that starts ticking if you don't get a pair and after one second flips the card back over
         DispatcherTimer timer2 = new DispatcherTimer();
@@ -124,8 +124,9 @@ namespace Memory_Game
             System.IO.File.WriteAllLines(path, save);
         }
 
+
+        //WORK IN PROGRESS
         /*
-        //Load Game
         private void loadSave()
         {
             string[] Read = System.IO.File.ReadAllLines(path);
@@ -321,7 +322,7 @@ namespace Memory_Game
 
         public void DispatcherTimerSample()
         {
-            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer.Interval = TimeSpan.FromMilliseconds(0.00001);
             timer2.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer2.Tick += timer2_Tick;
@@ -352,8 +353,6 @@ namespace Memory_Game
             Main.Children.Clear();
         }
 
-
-
         //Click on the MainMenu Button
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
@@ -368,9 +367,7 @@ namespace Memory_Game
             Main.Children.Add(MainMenugrid);
             MainMenugrid.ShowGridLines = true;
             mainmenu = new Mainmenu(Main, MainMenugrid);
-            //InitializeGameGrid(4, 4);
             MainMenugrid.Background = Brushes.Aqua;
         }
-    
     }
 }
