@@ -8,12 +8,15 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Input;
-
+using System.Windows.Threading;
 
 namespace Memory_Game
 {
     public class MemoryGrid
     {
+        DispatcherTimer timer = new DispatcherTimer();
+        DispatcherTimer timer2 = new DispatcherTimer();
+        bool timed = true;
         //Statics
         private Grid grid;              //Variable containing the game grid
         int cols;                       //Amount of columns
@@ -25,10 +28,10 @@ namespace Memory_Game
 
         //Temporaries
         int ImageNumbermem;             //Temporary variable containing previouos ImageNumber
-        int tempImageKind = 0;          //Temporary variable containing previous ImageKind
+        int tempImageKind;              //Temporary variable containing previous ImageKind
 
         //Game logic
-        int turn;                       //Int to check weither two turns have elapsed
+        int turn = 0;                   //Int to check weither two turns have elapsed
         int ImageNumber;                //Connector for ImageKind to grid
         string thema = "ab";            //Settable variable containing thema                 
 
@@ -40,6 +43,11 @@ namespace Memory_Game
         string playerName2;             //Name of player 2
         int playerScore2;               //Score of player 2
         private Label playerScores;     //Variable containting the label to display player scores
+
+        
+
+
+
 
         //MemoryGrid Class
         public MemoryGrid(Grid grid, int cols, int rows, Label playerScores, string playerName1, string playerName2, StackPanel Main)
@@ -71,7 +79,7 @@ namespace Memory_Game
 
             //Insantiate an empty grid
             InitializeGameGrid(cols, rows);
-            
+            DispatcherTimerSample();
             //Create images in grid
             CreateImage(cols, rows);
         }
@@ -108,7 +116,7 @@ namespace Memory_Game
                     grid.Children.Add(backgroundImage);
 
                     //Runs trough Gridmem; Keeps pairs turned around
-                    for(int i =0; i < 16; i++)
+                    for (int i = 0; i < 16; i++)
                     {
                         if (Gridmem[i] == true)
                         {
@@ -135,91 +143,115 @@ namespace Memory_Game
         //Happens on backgroundImage click
         private void OnPreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var point = Mouse.GetPosition(grid);
-            int row = 0;
-            int column = 0;
-            double accumulatedHeight = 0.0;
-            double accumulatedWidth = 0.0;
-            // calc row mouse was over
-            foreach (var rowDefinition in grid.RowDefinitions)
+            if (timed == true)
             {
-                accumulatedHeight += rowDefinition.ActualHeight;
-                if (accumulatedHeight >= point.Y)
-                    break;
-                row++;
-            }
-            // calc col mouse was over
-            foreach (var columnDefinition in grid.ColumnDefinitions)
-            {
-                accumulatedWidth += columnDefinition.ActualWidth;
-                if (accumulatedWidth >= point.X)
-                    break;
-                column++;
-            }
-            Image AngryBird = new Image();
-            // Make the grid point into a string so you can reconize it in the list (Gridpoints)
-            string imagePos = Convert.ToString(row) + Convert.ToString(column);
-            turn++;
-            // Match string imagePos to List Gridpoints
-            for (int i = 0; i < Gridpoints.Count; i++)
-            {
-                if (Gridpoints[i].Contains(imagePos))
+                var point = Mouse.GetPosition(grid);
+                int row = 0;
+                int column = 0;
+                double accumulatedHeight = 0.0;
+                double accumulatedWidth = 0.0;
+                // calc row mouse was over
+                foreach (var rowDefinition in grid.RowDefinitions)
                 {
-                    ImageNumber = i;
+                    accumulatedHeight += rowDefinition.ActualHeight;
+                    if (accumulatedHeight >= point.Y)
+                        break;
+                    row++;
+                }
+                // calc col mouse was over
+                foreach (var columnDefinition in grid.ColumnDefinitions)
+                {
+                    accumulatedWidth += columnDefinition.ActualWidth;
+                    if (accumulatedWidth >= point.X)
+                        break;
+                    column++;
+                }
+
+                Image AngryBird = new Image();
+                // Make the grid point into a string so you can reconize it in the list (Gridpoints)
+                string imagePos = Convert.ToString(row) + Convert.ToString(column);
+
+                // Match string imagePos to List Gridpoints
+                for (int i = 0; i < Gridpoints.Count; i++)
+                {
+                    if (Gridpoints[i].Contains(imagePos))
+                    {
+                        ImageNumber = i;
+                    }
+                }
+                // Write the Randomized image on the spot you click
+                AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+                AngryBird.Name = "ab" + Convert.ToString(ImageKind[ImageNumber]);
+                Grid.SetColumn(AngryBird, column);
+                Grid.SetRow(AngryBird, row);
+                grid.Children.Add(AngryBird);
+
+                Gridmem[ImageNumber] = true;
+
+                turn++;
+                if (turn != 2)
+                {
+                    ImageNumbermem = ImageNumber;
+                    tempImageKind = ImageKind[ImageNumber];
                 }
             }
-            // Write the Randomized image on the spot you click
-            AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
-            AngryBird.Name = "ab" + Convert.ToString(ImageKind[ImageNumber]);
-            Grid.SetColumn(AngryBird, column);
-            Grid.SetRow(AngryBird, row);
-            grid.Children.Add(AngryBird);
-            Console.WriteLine(AngryBird.Name);
-            Gridmem[ImageNumber] = true;
-            Console.WriteLine(Convert.ToString(ImageKind[ImageNumber]));
+        }
+    
 
-            //Debug pairs
-
-            //Console.WriteLine(Convert.ToString(Gridmem[0]));
-            //Console.WriteLine(Convert.ToString(Gridmem[1]));
-            //Console.WriteLine(Convert.ToString(Gridmem[2]));
-            //Console.WriteLine(Convert.ToString(Gridmem[3]));
-            //Console.WriteLine(Convert.ToString(Gridmem[4]));
-            //Console.WriteLine(Convert.ToString(Gridmem[5]));
-            //Console.WriteLine(Convert.ToString(Gridmem[6]));
-            //Console.WriteLine(Convert.ToString(Gridmem[7]));
-            //Console.WriteLine(Convert.ToString(Gridmem[8]));
-            //Console.WriteLine(Convert.ToString(Gridmem[9]));
-            //Console.WriteLine(Convert.ToString(Gridmem[10]));
-            //Console.WriteLine(Convert.ToString(Gridmem[11]));
-            //Console.WriteLine(Convert.ToString(Gridmem[12]));
-            //Console.WriteLine(Convert.ToString(Gridmem[13]));
-            //Console.WriteLine(Convert.ToString(Gridmem[14]));
-            //Console.WriteLine(Convert.ToString(Gridmem[15]));
-
+        private void Turn()
+        {           
             //Goes 2 turns at a time
             if (turn > 1)
             {
+
+
+
                 //Check if image is the same
-                if (ImageKind[ImageNumber] + 1 == tempImageKind )
+                if ( ImageKind[ImageNumber] == tempImageKind || ImageKind[ImageNumber] == tempImageKind)
                 {
-                    Console.WriteLine("PAIR!");
+                    Console.WriteLine("PAIR!");                   
                 }
                 else
                 {
-                    //Resets field minus pairs
-                    Gridmem[ImageNumber] = false;
-                    Gridmem[ImageNumbermem] = false;
-                    grid.Children.Clear();
-                    CreateImage(cols, rows);
+                    timed = false;
+                    timer2.Start();
                 }
                 turn = 0;
             }
-            //Sets temps to remember
-            ImageNumbermem = ImageNumber;
-            tempImageKind = ImageKind[ImageNumber] + 1;
-            //Show player scores
-            playerScores.Content = playerName1 + ": " + playerScore1 + "        " + playerName2 + ": " + playerScore2;
+        }
+
+
+        private void Clear()
+        {
+            Gridmem[ImageNumber] = false;
+            Gridmem[ImageNumbermem] = false;
+            grid.Children.Clear();
+            CreateImage(cols, rows);
+
+        }
+
+
+        public void DispatcherTimerSample()
+        {    
+            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer2.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer2.Tick += timer2_Tick;
+            timer.Start();
+        }
+
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Turn();
+        }
+
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Clear();
+            timer2.Stop();
+            timed = true;
         }
     }
 }
