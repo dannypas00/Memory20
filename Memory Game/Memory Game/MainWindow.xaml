@@ -33,6 +33,10 @@
                         Margin="0 5 0 0"
                         />
         </StackPanel>
+        <Label Content="Choose your theme:" HorizontalAlignment="Center" Margin="0, 20, 0, 0"/>
+        <CheckBox Content="Angry Birds" HorizontalAlignment="Center" Margin="0, 10, 0, 0" Checked="AngryBirds_Checked" />
+        <CheckBox Content="Star Wars" HorizontalAlignment="Center" Margin="0, 10, 0, 0" Checked="StarWars_Checked"/>
+        <CheckBox Content="Emoji's" HorizontalAlignment="Center" Margin="0, 10, 0, 0" Checked="Emoji_Checked"/>
         <Button x:Name="playBtn" Content="Play" Click="PlayBtn_Click"
                 Width="720"
                 Height="50"

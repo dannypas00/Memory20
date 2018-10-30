@@ -14,9 +14,12 @@ namespace Memory_Game
 {
     public class MemoryGrid
     {
+                                        //Timer that ticks every 0.3 seconds
         DispatcherTimer timer = new DispatcherTimer();
+                                        //Timer that starts ticking if you don't get a pair and after one second flips the card back over
         DispatcherTimer timer2 = new DispatcherTimer();
-        bool timed = true;
+        bool timed = true;              //Boolean to check if the flip timer has finished
+
         //Statics
         private Grid grid;              //Variable containing the game grid
         int cols;                       //Amount of columns
@@ -25,6 +28,7 @@ namespace Memory_Game
         List<string> Gridpoints = new List<string> { "00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33" };
         int[] ImageKind = new int[16];  //Array for connecting images to gridpoints
         bool[] Gridmem = new bool[16];  //Array to remember made pairs
+        int player = 1;                 //Which player's turn it is (counts up every turn)
 
         //Temporaries
         int ImageNumbermem;             //Temporary variable containing previouos ImageNumber
@@ -33,9 +37,7 @@ namespace Memory_Game
         //Game logic
         int turn = 0;                   //Int to check weither two turns have elapsed
         int ImageNumber;                //Connector for ImageKind to grid
-        string thema = "ab";            //Settable variable containing thema                 
-
-
+        string thema;                   //Settable variable containing thema        
 
         //Score logic
         string playerName1;             //Name of player 1
@@ -44,13 +46,14 @@ namespace Memory_Game
         int playerScore2;               //Score of player 2
         private Label playerScores;     //Variable containting the label to display player scores
 
+        //Saving and loading
+                                        //Path for the save file
         string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\")) + "Save.sav";
-        int player = 1;
 
 
 
         //MemoryGrid Class
-        public MemoryGrid(Grid grid, int cols, int rows, Label playerScores, string playerName1, string playerName2, StackPanel Main)
+        public MemoryGrid(Grid grid, int cols, int rows, Label playerScores, string playerName1, string playerName2, StackPanel Main, string thema)
         {
             //Variables from local to private
             this.playerName1 = playerName1;
@@ -60,6 +63,7 @@ namespace Memory_Game
             this.grid = grid;
             this.cols = cols;
             this.rows = rows;
+            this.thema = thema;
 
             //loadSave();
             //Creates the score keeper
@@ -80,7 +84,10 @@ namespace Memory_Game
 
             //Insantiate an empty grid
             InitializeGameGrid(cols, rows);
+
+            //Starts the timers
             DispatcherTimerSample();
+
             //Create images in grid
             CreateImage(cols, rows);
         }
@@ -168,8 +175,8 @@ namespace Memory_Game
                 {
                     //Create and set content for backgroundImage
                     Image backgroundImage = new Image();
-                    backgroundImage.Name = "abbg" + Convert.ToString(row) + Convert.ToString(column);
-                    backgroundImage.Source = new BitmapImage(new Uri("abbg.png", UriKind.Relative));
+                    backgroundImage.Name = thema + "bg" + Convert.ToString(row) + Convert.ToString(column);
+                    backgroundImage.Source = new BitmapImage(new Uri(thema + "bg.png", UriKind.Relative));
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
                     grid.Children.Add(backgroundImage);
@@ -268,6 +275,7 @@ namespace Memory_Game
                 if ( ImageKind[ImageNumber] == tempImageKind || ImageKind[ImageNumber] == tempImageKind)
                 {
                     Console.WriteLine("PAIR!");
+                    //Checks which player's turn it is
                     if (player % 2 == 0)
                     {
                         playerScore2 += 10;
