@@ -44,14 +44,24 @@ namespace Memory_Game
         int playerScore2;               //Score of player 2
         private Label playerScores;     //Variable containting the label to display player scores
 
-        
-
+        string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\")) + "Save.sav";
+        int player = 1;
 
 
 
         //MemoryGrid Class
         public MemoryGrid(Grid grid, int cols, int rows, Label playerScores, string playerName1, string playerName2, StackPanel Main)
         {
+            //Variables from local to private
+            this.playerName1 = playerName1;
+            this.playerName2 = playerName2;
+            this.grid = grid;
+            this.playerScores = playerScores;
+            this.grid = grid;
+            this.cols = cols;
+            this.rows = rows;
+
+            //loadSave();
             //Creates the score keeper
             Main.Children.Add(playerScores);
             playerScores.Content = playerName1 + ": " + playerScore1 + "        " + playerName2 + ": " + playerScore2;
@@ -68,21 +78,70 @@ namespace Memory_Game
             Random rnd = new Random();
             ImageKind = ImageKind.OrderBy(x => rnd.Next()).ToArray();
 
-            //Variables from local to private
-            this.playerName1 = playerName1;
-            this.playerName2 = playerName2;
-            this.grid = grid;
-            this.playerScores = playerScores;
-            this.grid = grid;
-            this.cols = cols;
-            this.rows = rows;
-
             //Insantiate an empty grid
             InitializeGameGrid(cols, rows);
             DispatcherTimerSample();
             //Create images in grid
             CreateImage(cols, rows);
         }
+
+        //Save Game
+        private void save()
+        {
+            System.IO.File.WriteAllText(path, "");
+            string[] save = new string[22];
+            save[0] = "playerName1" + playerName1;
+            save[1] = "playerName2" + playerName2;
+            save[2] = "playerScore1" + playerScore1;
+            save[3] = "playerScore2" + playerScore2;
+            save[4] = "turn" + turn;
+            int j = 0;
+            foreach (bool i in Gridmem)
+            {
+                save[5 + j] = "Gridmem" + i;
+                j++;
+            }
+            save[21] = "thema" + thema;
+            System.IO.File.WriteAllLines(path, save);
+        }
+
+        /*
+        //Load Game
+        private void loadSave()
+        {
+            string[] Read = System.IO.File.ReadAllLines(path);
+            foreach (string line in Read)
+            {
+                Console.WriteLine(line);
+            }
+            int runs = 0;
+            foreach (string line in Read)
+            {
+                if (line.Contains("playerName1")) { playerName1 = line.Substring("playerName1".Length); }
+                if (line.Contains("playerName2")) { playerName2 = line.Substring("playerName2".Length); }
+                if (line.Contains("playerScore1")) { playerScore1 = Convert.ToInt32(line.Substring("playerScore1".Length)); }
+                if (line.Contains("playerScore2")) { playerScore2 = Convert.ToInt32(line.Substring("playerScore2".Length)); }
+                if (line.Contains("turn")) { turn = Convert.ToInt32(line.Substring("turn".Length)); }
+                if (line.Contains("Gridmem"))
+                {
+                    switch (line.Substring("Gridmem".Length))
+                    {
+                        case "true":
+                            Gridmem[runs] = true;
+                            break;
+                        case "false":
+                            Gridmem[runs] = false;
+                            break;
+                        default:
+                            break;
+                    }
+                    runs++;
+                }
+                if (line.Contains("thema")) { thema = line.Substring("thema".Length); }
+                grid.Children.Clear();
+                CreateImage(cols, rows);
+            }
+        }*/
 
 
         //Create Empty grid cols x rows
@@ -145,6 +204,7 @@ namespace Memory_Game
         {
             if (timed == true)
             {
+                save();
                 var point = Mouse.GetPosition(grid);
                 int row = 0;
                 int column = 0;
@@ -203,13 +263,20 @@ namespace Memory_Game
             //Goes 2 turns at a time
             if (turn > 1)
             {
-
-
-
+                player++;
                 //Check if image is the same
                 if ( ImageKind[ImageNumber] == tempImageKind || ImageKind[ImageNumber] == tempImageKind)
                 {
-                    Console.WriteLine("PAIR!");                   
+                    Console.WriteLine("PAIR!");
+                    if (player % 2 == 0)
+                    {
+                        playerScore2 += 10;
+                    }
+                    else
+                    {
+                        playerScore1 += 10;
+                    }
+                    player -= 1;
                 }
                 else
                 {
@@ -227,7 +294,6 @@ namespace Memory_Game
             Gridmem[ImageNumbermem] = false;
             grid.Children.Clear();
             CreateImage(cols, rows);
-
         }
 
 
@@ -244,6 +310,7 @@ namespace Memory_Game
         private void timer_Tick(object sender, EventArgs e)
         {
             Turn();
+            playerScores.Content = playerName1 + ": " + playerScore1 + "        " + playerName2 + ": " + playerScore2;
         }
 
 
