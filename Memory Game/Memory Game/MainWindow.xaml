@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="880" Width="800">
     <StackPanel x:Name="Main">
+        <Button x:Name="Play" Content="Press Me!" Click="Start_Game" Height="880"/>
         <!--
         <CheckBox x:Name="EnableGrid" Unchecked="ClearGrid" Checked="CreateGrid">Have Grid?</CheckBox> 
         <Grid x:Name="GameGrid" Background="Aqua"/>
         -->
-        <Label Content="Memory game"
+       <!-- <Label Content="Memory game"
                FontFamily="Comic Sans MS"
                FontSize="40"
                HorizontalAlignment="Center"
@@ -44,6 +45,6 @@
                 Height="50"
                 Margin="0, 30, 0, 30"
                 />
-        <Grid x:Name="GameGrid" Background="Aqua"/>
+        <Grid x:Name="GameGrid" Background="Aqua"/>-->
     </StackPanel>
 </Window>
