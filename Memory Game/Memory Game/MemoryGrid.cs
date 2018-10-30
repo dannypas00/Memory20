@@ -30,7 +30,7 @@ namespace Memory_Game
         //Game logic
         int turn;                       //Int to check weither two turns have elapsed
         int ImageNumber;                //Connector for ImageKind to grid
-        string thema0 = "ab";           //Settable variable containing thema Angry Birds                
+        string thema = "ab";            //Settable variable containing thema             
               
 
         //Score logic
@@ -41,7 +41,7 @@ namespace Memory_Game
         private Label playerScores;     //Variable containting the label to display player scores
 
         //MemoryGrid Class
-        public MemoryGrid(Grid grid, int cols, int rows, Label playerScores, string playerName1, string playerName2, StackPanel Main)
+        public MemoryGrid(Grid grid, int cols, int rows, Label playerScores, string playerName1, string playerName2, StackPanel Main, string thema)
         {
             //Creates the score keeper
             Main.Children.Add(playerScores);
@@ -67,6 +67,7 @@ namespace Memory_Game
             this.grid = grid;
             this.cols = cols;
             this.rows = rows;
+            this.thema = thema;
 
             //Insantiate an empty grid
             InitializeGameGrid(cols, rows);
@@ -100,8 +101,8 @@ namespace Memory_Game
                 {
                     //Create and set content for backgroundImage
                     Image backgroundImage = new Image();
-                    backgroundImage.Name = (thema0 + "bg") + Convert.ToString(row) + Convert.ToString(column);
-                    backgroundImage.Source = new BitmapImage(new Uri(thema0 + "bg.png", UriKind.Relative));
+                    backgroundImage.Name = (thema + "bg") + Convert.ToString(row) + Convert.ToString(column);
+                    backgroundImage.Source = new BitmapImage(new Uri(thema + "bg.png", UriKind.Relative));
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
                     grid.Children.Add(backgroundImage);
@@ -116,8 +117,8 @@ namespace Memory_Game
                             {
                                 ImageNumber = i;
                                 Image AngryBird = new Image();
-                                AngryBird.Source = new BitmapImage(new Uri(thema0 + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
-                                AngryBird.Name = thema0 + Convert.ToString(ImageKind[ImageNumber]);
+                                AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+                                AngryBird.Name = thema + Convert.ToString(ImageKind[ImageNumber]);
                                 Grid.SetColumn(AngryBird, column);
                                 Grid.SetRow(AngryBird, row);
                                 grid.Children.Add(AngryBird);
@@ -168,8 +169,8 @@ namespace Memory_Game
                 }
             }
             // Write the Randomized image on the spot you click
-            AngryBird.Source = new BitmapImage(new Uri(thema0 + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
-            AngryBird.Name = thema0 + Convert.ToString(ImageKind[ImageNumber]);
+            AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+            AngryBird.Name = thema + Convert.ToString(ImageKind[ImageNumber]);
             Grid.SetColumn(AngryBird, column);
             Grid.SetRow(AngryBird, row);
             grid.Children.Add(AngryBird);

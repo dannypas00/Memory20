@@ -111,5 +111,25 @@
   <ItemGroup>
     <Resource Include="abbg.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="emo1.png" />
+    <Resource Include="emo2.png" />
+    <Resource Include="emo3.png" />
+    <Resource Include="emo4.png" />
+    <Resource Include="emo5.png" />
+    <Resource Include="emo6.png" />
+    <Resource Include="emo7.png" />
+    <Resource Include="emo8.png" />
+    <Resource Include="emobg.png" />
+    <Resource Include="sw1.png" />
+    <Resource Include="sw2.png" />
+    <Resource Include="sw3.png" />
+    <Resource Include="sw4.png" />
+    <Resource Include="sw5.png" />
+    <Resource Include="sw6.png" />
+    <Resource Include="sw7.png" />
+    <Resource Include="sw8.png" />
+    <Resource Include="swbg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

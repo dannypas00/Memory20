@@ -8,6 +8,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("abbg.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo2.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo3.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo4.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo5.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo6.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo7.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emo8.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("emobg.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw2.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw3.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw4.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw5.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw6.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw7.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sw8.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("swbg.png")]
 
 

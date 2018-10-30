@@ -20,6 +20,7 @@ namespace Memory_Game
     {
         public string player1;
         public string player2;
+        string thema;
         private Mainmenu mainmenu;
         private StackPanel Main;
         private MemoryGrid grid;
@@ -107,6 +108,7 @@ namespace Memory_Game
         private void PlayAngryBirdsTheme_Click(object sender, RoutedEventArgs e)
         {
             Clear();
+            thema = "ab";
             //player1 = PlayerName("Player 1");
             //player2 = PlayerName("Player 2");
             OpenGame(Main);
@@ -115,6 +117,7 @@ namespace Memory_Game
         private void PlayStarWarsTheme_Click(object sender, RoutedEventArgs e)
         {
             Clear();
+            thema = "sw";
             //player1 = PlayerName("Player 1");
             //player2 = PlayerName("Player 2");
             OpenGame(Main);
@@ -123,6 +126,7 @@ namespace Memory_Game
         private void PlayEmojiTheme_Click(object sender, RoutedEventArgs e)
         {
             Clear();
+            thema = "emo";
             //player1 = PlayerName("Player 1");
             //player2 = PlayerName("Player 2");
             OpenGame(Main);
@@ -140,7 +144,7 @@ namespace Memory_Game
 
             //string player1 = Convert.ToString(Player1Name.Text);
             //string player2 = Convert.ToString(Player2Name.Text);
-            grid = new MemoryGrid(gameGrid, NR_OF_COLS, NR_OF_ROWS, playerScores, player1, player2, Main);
+            grid = new MemoryGrid(gameGrid, NR_OF_COLS, NR_OF_ROWS, playerScores, player1, player2, Main, thema);
             gameGrid.Background = Brushes.Aqua;
         }
     }
