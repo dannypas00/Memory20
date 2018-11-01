@@ -26,7 +26,7 @@ namespace Memory_Game
         TextBox player2textbox;
 
 
-        public Mainmenu(StackPanel Main, Grid MainMenugrid)
+        public Mainmenu(StackPanel Main)
         {
             this.Main = Main;
 
@@ -97,7 +97,7 @@ namespace Memory_Game
         //Click on the Highscore Button
         private void HighscoreButton_Click(object sender, RoutedEventArgs e)
         {
-            Main.Children.Clear();
+            Clear();
             OpenHighscore(Main);
         }
 
@@ -116,9 +116,8 @@ namespace Memory_Game
             Main.Children.Add(Highscoregrid);
             Highscoregrid.ShowGridLines = true;
             highscore = new Highscore(Main, Highscoregrid);
-            //InitializeGameGrid(4, 4);
-            //Highscoregrid.Background = Brushes.Aqua;
         }
+
         //Click on the play button
         private void PlayGameButton_Click(object sender, RoutedEventArgs e)
         {

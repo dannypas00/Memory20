@@ -50,7 +50,7 @@ namespace Memory_Game
         private Mainmenu mainmenu;
 
         //Saving and loading
-        //Path for the save file
+                                        //Path for the save file
         string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\")) + "Save.sav";
 
 
@@ -125,7 +125,7 @@ namespace Memory_Game
         }
 
 
-        //WORK IN PROGRESS
+        //TEST FUNCTION PLEASE IGNORE
         /*
         private void loadSave()
         {
@@ -205,12 +205,12 @@ namespace Memory_Game
                             if (Gridpoints[i].Contains(gridpos))
                             {
                                 ImageNumber = i;
-                                Image AngryBird = new Image();
-                                AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
-                                AngryBird.Name = thema + Convert.ToString(ImageKind[ImageNumber]);
-                                Grid.SetColumn(AngryBird, column);
-                                Grid.SetRow(AngryBird, row);
-                                grid.Children.Add(AngryBird);
+                                Image Card = new Image();
+                                Card.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+                                Card.Name = thema + Convert.ToString(ImageKind[ImageNumber]);
+                                Grid.SetColumn(Card, column);
+                                Grid.SetRow(Card, row);
+                                grid.Children.Add(Card);
                             }
                         }
                     }
@@ -249,7 +249,8 @@ namespace Memory_Game
                     column++;
                 }
 
-                Image AngryBird = new Image();
+                Image Card = new Image();
+
                 // Make the grid point into a string so you can reconize it in the list (Gridpoints)
                 string imagePos = Convert.ToString(row) + Convert.ToString(column);
 
@@ -262,11 +263,11 @@ namespace Memory_Game
                     }
                 }
                 // Write the Randomized image on the spot you click
-                AngryBird.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
-                AngryBird.Name = thema + Convert.ToString(ImageKind[ImageNumber]);
-                Grid.SetColumn(AngryBird, column);
-                Grid.SetRow(AngryBird, row);
-                grid.Children.Add(AngryBird);
+                Card.Source = new BitmapImage(new Uri(thema + (ImageKind[ImageNumber] + 1) + ".png", UriKind.Relative));
+                Card.Name = thema + Convert.ToString(ImageKind[ImageNumber]);
+                Grid.SetColumn(Card, column);
+                Grid.SetRow(Card, row);
+                grid.Children.Add(Card);
 
                 Gridmem[ImageNumber] = true;
 
@@ -366,7 +367,7 @@ namespace Memory_Game
             MainMenugrid.Name = "MainMenu";
             Main.Children.Add(MainMenugrid);
             MainMenugrid.ShowGridLines = true;
-            mainmenu = new Mainmenu(Main, MainMenugrid);
+            mainmenu = new Mainmenu(Main);
             MainMenugrid.Background = Brushes.Aqua;
         }
     }

@@ -90,18 +90,13 @@ namespace Memory_Game
         //Click on the MainMenu Button
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            Main.Children.Clear();
+            Clear();
             OpenMainMenu(Main);
         }
 
         private void OpenMainMenu(StackPanel Main)
         {
-            Grid MainMenugrid = new Grid();
-            MainMenugrid.Name = "MainMenu";
-            Main.Children.Add(MainMenugrid);
-            MainMenugrid.ShowGridLines = true;
-            mainmenu = new Mainmenu(Main, MainMenugrid);
-            MainMenugrid.Background = Brushes.Aqua;
+            mainmenu = new Mainmenu(Main);
         }
 
         //Click on the Angry Birds Button
@@ -125,6 +120,7 @@ namespace Memory_Game
             thema = "emo";
             OpenGame(Main);
         }
+
         public void OpenGame(StackPanel Main)
         {
             Grid gameGrid = new Grid();
@@ -136,7 +132,6 @@ namespace Memory_Game
             playerScores.FontFamily = new FontFamily("Comic Sans MS");
             playerScores.FontSize = 30;
             grid = new MemoryGrid(gameGrid, NR_OF_COLS, NR_OF_ROWS, playerScores, playerName1, playerName2, Main, thema);
-            gameGrid.Background = Brushes.Aqua;
         }
     }
 }

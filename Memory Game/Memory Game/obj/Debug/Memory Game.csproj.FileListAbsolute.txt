@@ -118,3 +118,7 @@ G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\obj\Debug\Memory Game.g.res
 G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\obj\Debug\Memory_Game.Properties.Resources.resources
 G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\obj\Debug\Memory Game.csproj.GenerateResource.cache
 G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\obj\Debug\Memory Game.csproj.CoreCompileInputs.cache
+G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\bin\Debug\Memory Game.exe.manifest
+G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\bin\Debug\Memory Game.application
+G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\obj\Debug\Memory Game.exe.manifest
+G:\My Drive\HBO-ICT\Memory20\Memory Game\Memory Game\obj\Debug\Memory Game.application
